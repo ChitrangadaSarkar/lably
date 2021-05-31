@@ -3,8 +3,12 @@ package com.xfactor.lably.controllers;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 
 import com.xfactor.lably.entity.Lab;
+import com.xfactor.lably.entity.Tests;
+import com.xfactor.lably.entity.Admin;
+import com.xfactor.lably.entity.Customer;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
 @RequestMapping("/test")
@@ -21,7 +26,7 @@ public class TestController {
     ArrayList<Lab> labs = new ArrayList<>();
 
     // @RequestMapping(method = RequestMethod.GET)
-    @GetMapping
+    @GetMapping("/hello")
     public String hello() {
         return "Greetings from XFACTOR!!!";
     }
@@ -60,6 +65,42 @@ public class TestController {
     @PostMapping("/addLab")
     public Lab addLab(@RequestBody Lab lab) {
         String name = lab.getName();
+        String address = lab.getAddress();
+        String phone = lab.getPhone();
+        String pincode = lab.getPincode();
+        name = "NAME - " + name + "\n";
+        address = "ADDRESS - " + address + "\n";
+        phone = "PHONE - " + phone + "\n";
+        pincode = "PINCODE - " + pincode + "\n";
+        lab.setName(name);
+        lab.setAddress(address);
+        lab.setPhone(phone);
+        lab.setPincode(pincode);
+        labs.add(lab);
+        return lab;
+    }
+
+   /* @PostMapping("/addTests")
+    public Tests addLab(@RequestBody Tests tests) {
+        String name = lab.getName();
+        name = "NAME - " + name + "\n";
+        lab.setName(name);
+        //labs.add(lab);
+        return lab;
+    }
+
+    @PostMapping("/addAdmin")
+    public Lab addLab(@RequestBody Lab lab) {
+        String name = lab.getName();
+        name = "Hello " + name + "\n";
+        address = "";
+       // lab.setName(name);
+       // labs.add(lab);
+       // return lab;
+    }
+    @PostMapping("/addCustomer")
+    public Lab addLab(@RequestBody Lab lab) {
+        String name = lab.getName();
         name = "Hello " + name;
         lab.setName(name);
         labs.add(lab);
@@ -83,6 +124,6 @@ public class TestController {
     // @PostMapping("/employees")
     // Employee newEmployee(@RequestBody Employee newEmployee) {
     // return repository.save(newEmployee);
-    // }
+    // }*/
 
 }
